@@ -1,6 +1,6 @@
 # Question sorting (Android)
 
-This is a Python program which sort the newest and most voted question of stack overflow in a week ago.
+This is a Python program which sort the top 10 newest and most voted question of stack overflow in a week ago.
 
 ## Installation
 
