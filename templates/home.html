@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>home</title>
+
+    <link rel="stylesheet" href="assets/css/product-lists/product-list-vertical.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+code ,pre{
+    background-color:
+    #eff0f1;
+}
+pre{
+    max-height: 600px;
+overflow: auto;
+    overflow: auto;
+}
+.product-list-vertical{
+    list-style:none;
+    {#margin: 0 auto;#}
+    max-width: 600px;
+    padding: 0;
+}
+
+.product-list-vertical li{
+    box-sizing:border-box;
+    overflow: hidden;
+    text-align:left;
+    font:normal 12px sans-serif;
+    background-color:#ffffff;
+    border:1px solid #dbe3e7;
+    border-radius: 3px;
+    box-shadow: 1px 3px 1px rgba(0, 0, 0, 0.08);
+
+    max-width:570px;
+    margin-bottom: 25px;
+    padding: 25px;
+}
+
+/* Product title */
+
+.product-list-vertical .product-details h2{
+    display: block;
+    margin:0;
+    font-size: 18px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+}
+
+.product-list-vertical .product-details .product-rating div{
+    display: inline-block;
+    margin-top: 10px;
+}
+
+
+.product-list-vertical .product-details .product-rating .product-stars i{
+    margin-right: 2px;
+}
+
+.product-list-vertical .product-details .product-rating p{
+    color: #808080;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.product-list-vertical .product-details button{
+    float: right;
+    border-radius: 2px;
+    background-color:  #87bae1;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
+    border: 0;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 13px;
+    cursor: pointer;
+    width: 95px;
+    height: 32px;
+}
+.item-part{
+    float: right;
+    display: inline;
+}
+@media (max-width: 600px){
+    .item-part{
+        float: left;
+    }
+    .product-list-vertical li{
+        max-width:265px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .product-list-vertical .product-details{
+        float: none;
+    }
+}
+    .item-title{ cursor: pointer; }
+
+    .item-body img{max-width: 100%}
+    </style>
+
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        $('.item-body').hide(); //hide all the reason text
+        $('.item-title').on('click', function() {
+          $(this).next('.item-body').slideToggle('slow');
+        })
+    });
+</script>
+</head>
+<body>
+<div style="float: left;display: inline">
+<h1>Most Votes Questions</h1>
+    <ul class="product-list-vertical">
+        {% for item in voted_items%}
+        <li>
+            <div class="product-details">
+                <h2 class="item-title" >{{item.title | safe}}</h2>
+                <div class="item-body" > {{ item.body | safe}} </div>
+                <div class="product-rating">
+                    <p>{{item.score}} votes</p>
+                    <p>{{item.creation_date  }}</p>
+                </div>
+                <a href="{{ item.link }}"  target="_blank"><button> read more!</button></a>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+<div class="item-part" >
+<h1>Newest Questions</h1>
+    <ul class="product-list-vertical">
+        {% for item in newst_items%}
+        <li>
+            <div class="product-details">
+                <h2 class="item-title" >{{item.title | safe}}</h2>
+                <div class="item-body" > {{ item.body | safe}} </div>
+                <div class="product-rating">
+                    <p>{{item.score}} votes</p>
+                    <p>{{item.creation_date  }}</p>
+                </div>
+                <a href="{{ item.link }}"  target="_blank"><button> read more!</button></a>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+</body>
+
+</html>
